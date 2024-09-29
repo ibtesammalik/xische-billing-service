@@ -1,21 +1,18 @@
-com.xische.xischebilling.controller.CalculateDiscountController
-have to end "/api/calculate"
-it accept two parameters header and body 
-@RequestHeader HttpHeaders headers ,@Valid @RequestBody CalculateBillRequest BillRequest)
+***com.xische.xischebilling.controller.CalculateDiscountController***
+> endpoint have to end "/api/calculate"
+> it accept two parameters header and body @RequestHeader HttpHeaders headers ,@Valid @RequestBody CalculateBillRequest BillRequest)
 
-CalculateBillRequest validation had added in DTO to get valid input
-
-header bearer token will be send to valid endpoint
-
-
-authentication server port and ip to secure endpoint
-spring.security.oauth2.resourceserver.jwt.issuer-uri=http://localhost:1001
+> CalculateBillRequest validation had added in DTO to get valid input
+	**Authentication**
+> header bearer token will be send to valid endpoint
+> authentication server port and ip to secure endpoint
+		spring.security.oauth2.resourceserver.jwt.issuer-			uri=http://localhost:1001
 --------------------------------------------------------------------------------------------------
-com.xische.xischebilling.service.CalculateService
-aspecting CalculateBillRequest object in order to calculate bill.
+***com.xische.xischebilling.service.CalculateService***
+* aspecting CalculateBillRequest object in order to calculate bill.
 
 //properties are set for customer to make everything configurable
-
+**Properties**
 #employee discount
 employee.discount=30.0
 
@@ -34,22 +31,21 @@ discount.bill=100
 
 
 
-com.xische.xischebilling.logs.LoggingAspect
-AOP had implemented in LoggingAspect class to log request and response
+***com.xische.xischebilling.logs.LoggingAspect***
+> AOP had implemented in LoggingAspect class to log request and response
 
-tag had created of log @LogExecution
+> tag had created of log @LogExecution
 
-com.xische.xischebilling.client.CurrencyConversionClient
-@FeignClient is implement to fetch conversion rate
+***com.xische.xischebilling.client.CurrencyConversionClient***
+> FeignClient is implement to fetch conversion rate
 
-circuit breaker is implement and fallback method is define com.xische.xischebilling.client.FallbackConversionRate
+> circuit breaker is implement and fallback method is define com.xische.xischebilling.client.FallbackConversionRate
 
-properties file are 
+**properties** file are 
 resilience4j.circuitbreaker.instances.CurrencyConversionClientgetConversionRate.minimumNumberOfCalls=10
 resilience4j.timelimiter.instances.CurrencyConversionClientgetConversionRate.timeoutDuration=10s
 
-restcontroller exception is implemented
-com.xische.xischebilling.exception.ExceptionHandler
+***com.xische.xischebilling.exception.ExceptionHandler***
 
 common exception are override like
 1) NullPointerException
